@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Outer ring (black) -->
+  <circle cx="50" cy="50" r="48" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Middle ring (red) -->
+  <circle cx="50" cy="50" r="38" fill="#ef4444"/>
+  
+  <!-- Inner ring (green) -->
+  <circle cx="50" cy="50" r="28" fill="#10b981"/>
+  
+  <!-- Bullseye (red center) -->
+  <circle cx="50" cy="50" r="8" fill="#ef4444"/>
+  
+  <!-- Dart segments (white lines) -->
+  <line x1="50" y1="2" x2="50" y2="10" stroke="#f1f5f9" stroke-width="1.5"/>
+  <line x1="50" y1="90" x2="50" y2="98" stroke="#f1f5f9" stroke-width="1.5"/>
+  <line x1="2" y1="50" x2="10" y2="50" stroke="#f1f5f9" stroke-width="1.5"/>
+  <line x1="90" y1="50" x2="98" y2="50" stroke="#f1f5f9" stroke-width="1.5"/>
+  
+  <!-- Diagonal segments -->
+  <line x1="50" y1="50" x2="20" y2="20" stroke="#f1f5f9" stroke-width="1" opacity="0.6"/>
+  <line x1="50" y1="50" x2="80" y2="20" stroke="#f1f5f9" stroke-width="1" opacity="0.6"/>
+  <line x1="50" y1="50" x2="20" y2="80" stroke="#f1f5f9" stroke-width="1" opacity="0.6"/>
+  <line x1="50" y1="50" x2="80" y2="80" stroke="#f1f5f9" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Dart arrow pointing at center -->
+  <path d="M 30 20 L 50 50 L 45 50 L 50 45 Z" fill="#6366f1" stroke="#4f46e5" stroke-width="1"/>
+</svg>
+

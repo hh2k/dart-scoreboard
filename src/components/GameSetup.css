@@ -1,0 +1,164 @@
+.game-setup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.setup-card {
+  background: var(--surface);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--surface-light);
+}
+
+.setup-card h2 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text);
+}
+
+.setup-section {
+  margin-bottom: 2rem;
+}
+
+.setup-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mode-selector {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.mode-button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: var(--surface-light);
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-button:hover {
+  background: var(--surface);
+  border-color: var(--primary);
+}
+
+.mode-button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.player-input-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.player-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: var(--surface-light);
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  color: var(--text);
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.player-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+.remove-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--danger);
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-button:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+.add-player-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  border: 2px dashed var(--surface-light);
+  border-radius: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-player-button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.start-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+
+.start-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+.start-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .setup-card {
+    padding: 1.5rem;
+  }
+}
+

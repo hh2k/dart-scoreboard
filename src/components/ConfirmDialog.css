@@ -1,0 +1,141 @@
+.confirm-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.confirm-dialog {
+  background: var(--surface);
+  border-radius: 1rem;
+  padding: 0;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--surface-light);
+  animation: slideUp 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.confirm-dialog-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--surface-light);
+}
+
+.confirm-dialog-header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.confirm-dialog-body {
+  padding: 2rem;
+}
+
+.confirm-dialog-body p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.confirm-dialog-footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--surface-light);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.confirm-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.confirm-button.cancel {
+  background: var(--surface-light);
+  color: var(--text);
+}
+
+.confirm-button.cancel:hover {
+  background: #475569;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.confirm-button.confirm {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+}
+
+.confirm-button.confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+.confirm-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .confirm-dialog {
+    width: 95%;
+    margin: 1rem;
+  }
+
+  .confirm-dialog-header,
+  .confirm-dialog-body,
+  .confirm-dialog-footer {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .confirm-dialog-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .confirm-dialog-body p {
+    font-size: 0.9375rem;
+  }
+
+  .confirm-button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+    min-width: 80px;
+  }
+}
+
