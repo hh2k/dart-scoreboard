@@ -2,24 +2,75 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  min-height: 70vh;
+  padding: 2rem 0;
 }
 
 .setup-card {
   background: var(--surface);
-  border-radius: 1rem;
-  padding: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 3rem;
   width: 100%;
-  max-width: 500px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--surface-light);
+  max-width: 480px;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 39, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(201, 162, 39, 0.08);
+}
+
+/* Decorative corner brackets */
+.setup-card::before,
+.setup-card::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--gold-dark);
+  border-style: solid;
+}
+
+.setup-card::before {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+
+.setup-card::after {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+.setup-heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.setup-heading-label {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .setup-card h2 {
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: var(--text);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.setup-divider {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  margin: 0.85rem auto 0;
 }
 
 .setup-section {
@@ -28,48 +79,62 @@
 
 .setup-label {
   display: block;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
   color: var(--text-secondary);
-  margin-bottom: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin-bottom: 0.85rem;
 }
 
 .mode-selector {
   display: flex;
-  gap: 0.75rem;
+  gap: 0;
+  border: 1px solid var(--border-mid);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .mode-button {
   flex: 1;
-  padding: 0.75rem 1.5rem;
-  background: var(--surface-light);
-  border: 2px solid transparent;
-  border-radius: 0.5rem;
-  color: var(--text);
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.18s;
+  position: relative;
+}
+
+.mode-button + .mode-button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: var(--border-mid);
 }
 
 .mode-button:hover {
-  background: var(--surface);
-  border-color: var(--primary);
+  color: var(--cream);
+  background: var(--surface-mid);
 }
 
 .mode-button.active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: white;
+  background: var(--surface-light);
+  color: var(--gold);
+  box-shadow: inset 0 -2px 0 var(--gold);
 }
 
 .players-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
 .player-input-row {
@@ -78,87 +143,157 @@
   align-items: center;
 }
 
+.player-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  color: var(--text-muted);
+  width: 1.2rem;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
 .player-input {
   flex: 1;
-  padding: 0.75rem 1rem;
-  background: var(--surface-light);
-  border: 2px solid transparent;
-  border-radius: 0.5rem;
-  color: var(--text);
-  font-size: 1rem;
-  transition: all 0.2s;
+  padding: 0.7rem 1rem;
+  background: var(--surface-mid);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--cream);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.05rem;
+  transition: all 0.18s;
+}
+
+.player-input::placeholder {
+  color: var(--text-muted);
 }
 
 .player-input:focus {
   outline: none;
-  border-color: var(--primary);
-  background: var(--surface);
+  border-color: var(--gold-dark);
+  background: var(--surface-light);
+  box-shadow: 0 0 0 3px var(--gold-glow);
 }
 
 .remove-button {
-  width: 2.5rem;
-  height: 2.5rem;
-  background: var(--danger);
-  border: none;
-  border-radius: 0.5rem;
-  color: white;
-  font-size: 1.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.18s;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .remove-button:hover {
-  background: #dc2626;
-  transform: scale(1.05);
+  background: rgba(155, 35, 53, 0.2);
+  border-color: var(--red);
+  color: var(--red-bright);
 }
 
 .add-player-button {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.7rem;
   background: transparent;
-  border: 2px dashed var(--surface-light);
-  border-radius: 0.5rem;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
+  border: 1px dashed var(--border);
+  border-radius: 2px;
+  color: var(--text-muted);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.05rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.18s;
+  letter-spacing: 0.05em;
 }
 
 .add-player-button:hover {
-  border-color: var(--primary);
-  color: var(--primary);
+  border-color: var(--gold-dark);
+  color: var(--gold);
+  background: rgba(201, 162, 39, 0.04);
 }
 
 .start-button {
   width: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  border: none;
-  border-radius: 0.5rem;
-  color: white;
-  font-size: 1.125rem;
-  font-weight: 600;
+  padding: 1.1rem;
+  background: transparent;
+  border: 1px solid var(--gold-dark);
+  border-radius: 2px;
+  color: var(--gold);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.18em;
   cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 1rem;
+  transition: all 0.22s;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.start-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.08), rgba(201, 162, 39, 0.02));
+  opacity: 0;
+  transition: opacity 0.22s;
+}
+
+.start-button:hover:not(:disabled)::before {
+  opacity: 1;
 }
 
 .start-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 0 24px var(--gold-glow), inset 0 0 24px rgba(201, 162, 39, 0.05);
+  transform: translateY(-1px);
 }
 
 .start-button:disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
+  border-color: var(--border);
+  color: var(--text-muted);
 }
 
 @media (max-width: 768px) {
+  .game-setup {
+    align-items: flex-start;
+    min-height: unset;
+    padding: 0;
+  }
+
   .setup-card {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
+  }
+
+  .setup-card::before,
+  .setup-card::after {
+    display: none;
+  }
+
+  .setup-card h2 {
+    font-size: 2.4rem;
+  }
+
+  .mode-button {
+    font-size: 1.2rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .start-button {
+    font-size: 1.25rem;
+    padding: 1rem;
   }
 }
-

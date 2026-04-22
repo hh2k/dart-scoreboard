@@ -116,7 +116,18 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Dart Scoreboard</h1>
+        <div className="header-brand">
+          <svg className="header-dart-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="17" stroke="#c9a227" strokeWidth="1.5" opacity="0.5"/>
+            <circle cx="18" cy="18" r="11" stroke="#c9a227" strokeWidth="1" opacity="0.4"/>
+            <circle cx="18" cy="18" r="5" fill="#9b2335" opacity="0.85"/>
+            <circle cx="18" cy="18" r="2" fill="#f0e8d0"/>
+            <line x1="33" y1="3" x2="18" y2="18" stroke="#c9a227" strokeWidth="2" strokeLinecap="round"/>
+            <polygon points="33,3 29,5 31,1" fill="#c9a227"/>
+          </svg>
+          <h1>Dart Scoreboard</h1>
+        </div>
+
       </header>
       <main className="app-main">
         {!gameStarted ? (
