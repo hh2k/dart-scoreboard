@@ -5,7 +5,10 @@
       "Bash(curl -s http://localhost:5173)",
       "Bash(npx tsc:*)",
       "Bash(npm show:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm -v)",
+      "Bash(npm view *)",
+      "Bash(docker *)"
     ]
   }
 }

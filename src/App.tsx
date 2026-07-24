@@ -24,27 +24,24 @@ interface SavedGameState {
 
 const STORAGE_KEY = 'dart-scoreboard-game-state'
 
-function App() {
-  const [players, setPlayers] = useState<Player[]>([])
-  const [gameMode, setGameMode] = useState<GameMode>('501')
-  const [gameStarted, setGameStarted] = useState(false)
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
+function loadSavedGameState(): SavedGameState | null {
+  const savedState = localStorage.getItem(STORAGE_KEY)
+  if (!savedState) return null
+  try {
+    return JSON.parse(savedState)
+  } catch (error) {
+    console.error('Failed to load saved game state:', error)
+    localStorage.removeItem(STORAGE_KEY)
+    return null
+  }
+}
 
-  // Load game state from localStorage on mount
-  useEffect(() => {
-    const savedState = localStorage.getItem(STORAGE_KEY)
-    if (savedState) {
-      try {
-        const state: SavedGameState = JSON.parse(savedState)
-        setPlayers(state.players)
-        setGameMode(state.gameMode)
-        setGameStarted(true)
-      } catch (error) {
-        console.error('Failed to load saved game state:', error)
-        localStorage.removeItem(STORAGE_KEY)
-      }
-    }
-  }, [])
+function App() {
+  const [initialGameState] = useState(loadSavedGameState)
+  const [players, setPlayers] = useState<Player[]>(initialGameState?.players ?? [])
+  const [gameMode, setGameMode] = useState<GameMode>(initialGameState?.gameMode ?? '501')
+  const [gameStarted, setGameStarted] = useState(initialGameState !== null)
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
 
   // Save game state to localStorage whenever it changes
   useEffect(() => {

@@ -1,5 +1,5 @@
 # Use a node base image
-FROM node:20-alpine AS build
+FROM node:24-alpine AS build
 
 # Set the working directory
 WORKDIR /app
@@ -17,8 +17,8 @@ RUN echo "VITE_API_URL=" > .env
 # Build the React app
 RUN npm run build
 
-# Use a lightweight web server to serve the static files
-FROM nginx:alpine
+# Use a lightweight, unprivileged web server to serve the static files
+FROM nginxinc/nginx-unprivileged:alpine
 
 # Copy the React app build files to the NGINX directory
 COPY --from=build /app/dist /usr/share/nginx/html
@@ -27,7 +27,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose the port that NGINX is running on
-EXPOSE 80
+EXPOSE 8080
 
 # Start NGINX server
 CMD ["nginx", "-g", "daemon off;"]

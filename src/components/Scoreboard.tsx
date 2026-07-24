@@ -87,14 +87,6 @@ function Scoreboard({ players, setPlayers, gameMode, onReset }: ScoreboardProps)
   )
 
   useEffect(() => {
-    if (players.length > 0 && initialState.currentPlayerIndex !== undefined) {
-      const validIndex = getValidPlayerIndex(initialState.currentPlayerIndex)
-      setCurrentPlayerIndex(validIndex)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [players.length])
-
-  useEffect(() => {
     const stateToSave = {
       currentPlayerIndex,
       gameOver,
@@ -102,13 +94,6 @@ function Scoreboard({ players, setPlayers, gameMode, onReset }: ScoreboardProps)
     }
     localStorage.setItem(SCOREBOARD_STATE_KEY, JSON.stringify(stateToSave))
   }, [currentPlayerIndex, gameOver, winner])
-
-  useEffect(() => {
-    if (initialState.winnerId && !winner && players.length > 0) {
-      const foundWinner = players.find((p) => p.id === initialState.winnerId)
-      if (foundWinner) setWinner(foundWinner)
-    }
-  }, [players, initialState.winnerId, winner])
 
   const currentPlayer = players[currentPlayerIndex]
 
