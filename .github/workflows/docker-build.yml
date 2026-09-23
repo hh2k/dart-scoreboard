@@ -15,12 +15,12 @@ jobs:
     steps:
       # Step 1: Check out the code
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       # New step: Read version from package.json
       - name: Get version from package.json
         id: package-version
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
 
       # Step 2: Build the Docker image
       - name: Build Docker image
@@ -56,5 +56,5 @@ jobs:
             docker stop dart-scoreboard
             docker rm dart-scoreboard
             docker load -i ~/dart-scoreboard.tar
-            docker run -d --name dart-scoreboard -p 5008:80 --restart unless-stopped dart-scoreboard:${{ steps.package-version.outputs.version }}
+            docker run -d --name dart-scoreboard -p 5008:8080 --restart unless-stopped dart-scoreboard:${{ steps.package-version.outputs.version }}
             rm ~/dart-scoreboard.tar  # Optionally remove the tar file after loading
