@@ -1,0 +1,33 @@
+version: 2
+updates:
+  # npm packages (package.json / package-lock.json)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      # One combined PR for all minor/patch bumps instead of one per package
+      npm-non-major:
+        update-types: ["minor", "patch"]
+
+  # Docker base images in the Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    ignore:
+      # Stay on the current Node LTS line; bump majors by hand
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
+
+  # Actions used in .github/workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      actions:
+        patterns: ["*"]

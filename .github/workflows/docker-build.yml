@@ -29,6 +29,7 @@ jobs:
 
       # Step 3: Save the Docker image as a tar file
       - name: Save Docker image
+        if: github.event_name == 'push'
         run: |
           docker save dart-scoreboard:latest dart-scoreboard:${{ steps.package-version.outputs.version }} -o /tmp/dart-scoreboard.tar
           chmod 644 /tmp/dart-scoreboard.tar
@@ -37,6 +38,7 @@ jobs:
 
       # Step 4: Transfer the Docker image to the remote server
       - name: Transfer Docker image to server
+        if: github.event_name == 'push'
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
@@ -47,6 +49,7 @@ jobs:
 
       # Step 5: Load the Docker image on the server
       - name: Load Docker image on server
+        if: github.event_name == 'push'
         uses: appleboy/ssh-action@v1.1.0
         with:
           key: ${{ secrets.SERVER_SSH_KEY }}
