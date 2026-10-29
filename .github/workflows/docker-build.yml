@@ -65,3 +65,28 @@ jobs:
             docker load -i ~/dart-scoreboard.tar
             docker run -d --name dart-scoreboard -p 5008:8080 --restart unless-stopped dart-scoreboard:${{ steps.package-version.outputs.version }}
             rm ~/dart-scoreboard.tar  # Optionally remove the tar file after loading
+
+  # Merge Dependabot minor/patch PRs once the build above has passed, then deploy.
+  dependabot-merge:
+    needs: build-and-transfer
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: Fetch Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@v3
+
+      - name: Merge PR and deploy
+        if: steps.meta.outputs.update-type != 'version-update:semver-major'
+        run: |
+          gh pr merge --squash --delete-branch "$PR_URL"
+          # Merges made by a workflow don't trigger the push deploy,
+          # so start the deploy run on main explicitly.
+          gh workflow run docker-build.yml --ref main --repo "$GITHUB_REPOSITORY"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
