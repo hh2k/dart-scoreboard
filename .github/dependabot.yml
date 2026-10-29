@@ -6,6 +6,10 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+    ignore:
+      # Never propose major version bumps; do those by hand
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
       # One combined PR for all minor/patch bumps instead of one per package
       npm-non-major:
@@ -18,8 +22,7 @@ updates:
       interval: "weekly"
       day: "monday"
     ignore:
-      # Stay on the current Node LTS line; bump majors by hand
-      - dependency-name: "node"
+      - dependency-name: "*"
         update-types: ["version-update:semver-major"]
 
   # Actions used in .github/workflows
@@ -28,6 +31,9 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
       actions:
         patterns: ["*"]
