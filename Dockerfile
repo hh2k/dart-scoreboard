@@ -1,5 +1,5 @@
 # Use a node base image
-FROM node:24-alpine AS build
+FROM node:24.22.2-alpine AS build
 
 # Set the working directory
 WORKDIR /app
@@ -18,7 +18,12 @@ RUN echo "VITE_API_URL=" > .env
 RUN npm run build
 
 # Use a lightweight, unprivileged web server to serve the static files
-FROM nginxinc/nginx-unprivileged:alpine
+FROM nginxinc/nginx-unprivileged:1.31.7-alpine
+
+# Install the latest Alpine security fixes (image runs as non-root user 101)
+USER root
+RUN apk upgrade --no-cache
+USER 101
 
 # Copy the React app build files to the NGINX directory
 COPY --from=build /app/dist /usr/share/nginx/html
